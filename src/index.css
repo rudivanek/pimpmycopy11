@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles that apply to both light and dark modes */
+@layer base {
+  body {
+    @apply transition-colors duration-200 bg-white text-gray-900 dark:bg-black dark:text-white;
+    /* Removed the font-family declaration below that was overriding Tailwind config */
+  }
+  
+  /* Better focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-opacity-50;
+  }
+}
+
+/* Custom scrollbar styling */
+@layer utilities {
+  .custom-scrollbar {
+    scrollbar-width: thin; /* Firefox */
+  }
+  
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-600;
+  }
+
+  /* Disable animations for immediate appearance */
+  .no-animation {
+    animation: none !important;
+    -webkit-animation: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+  }
+}
+
+/* Toaster customization */
+:root {
+  --toastify-color-light: #ffffff;
+  --toastify-color-dark: #1f2937;
+  --toastify-color-success: #ff6600;
+  --toastify-color-error: #e11d48;
+}
+
+/* Dark mode customization */
+html.dark {
+  --toastify-color-light: #1f2937;
+  --toastify-color-dark: #000000;
+  --toastify-text-color-light: #ffffff;
+}
+
+/* Smooth transition for theme changes */
+html, body, *:not(.no-transition):not(.no-animation) {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Fix for initial loading state */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Animation for fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
